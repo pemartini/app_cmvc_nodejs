@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\xampp\\htdocs\\cmvc"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"name": "SSH FS - rn",
+			"uri": "ssh://rn/"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "cmvc"
+	}
+}
