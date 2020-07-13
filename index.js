@@ -6,12 +6,6 @@ const cors = require('cors');
 
 const server = restify.createServer();
 
-//Middleware
-server.use(restify.plugins.bodyParser());
-
-
-server.use(cors());
-
 //Protect Routes
 //server.use(rjwt({ secret : config.JWT_SECRET }).unless({ path: ['/auth'] }));
 
@@ -21,7 +15,7 @@ server.listen(config.PORT, () => {
     mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true});
 });
 
-/*
+
 server.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
@@ -29,7 +23,10 @@ server.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Credentials', true)
 	next();
 });
-*/
+
+
+//Middleware
+server.use(restify.plugins.bodyParser());
 
 const db = mongoose.connection;
 

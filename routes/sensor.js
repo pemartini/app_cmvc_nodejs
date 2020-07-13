@@ -27,13 +27,11 @@ module.exports = server => {
 
     //Add Sensor
     server.post('/sensor', async(req,res,next) => {
-        console.log("ENTROU");
-        console.log(req.body.dataString);
+        console.log(req.body);
         if(!req.is('application/json')){
             return next(new errors.InvalidContentError("Expects 'application/json'"));
         }
-        console.log(req.body.dataString);
-        const { name, apiKey, isActive, userId, sensorType, dangerState } = req.body.data;
+        const { name, apiKey, isActive, userId, sensorType, dangerState } = req.body;
         const sensor = new Sensor({
             name,
             apiKey,
