@@ -2,11 +2,15 @@ const restify = require('restify');
 const mongoose = require('mongoose');
 const config = require('./config');
 const rjwt = require('restify-jwt-community');
+const cors = require('cors');
 
 const server = restify.createServer();
 
 //Middleware
 server.use(restify.plugins.bodyParser());
+
+
+server.use(cors());
 
 //Protect Routes
 //server.use(rjwt({ secret : config.JWT_SECRET }).unless({ path: ['/auth'] }));
@@ -17,6 +21,7 @@ server.listen(config.PORT, () => {
     mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true});
 });
 
+/*
 server.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
@@ -24,6 +29,7 @@ server.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Credentials', true)
 	next();
 });
+*/
 
 const db = mongoose.connection;
 
@@ -39,5 +45,6 @@ db.once('open', () => {
     require('./routes/polygon')(server);
     require('./routes/measurementSet')(server);
     require('./routes/notification')(server);
+    require('./routes/measurement')(server);
     console.log(`Server started on port ${config.PORT}`);
 });
