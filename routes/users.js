@@ -30,14 +30,19 @@ module.exports = server => {
     });
 
     // Update User
-    server.put('/users/:id', async (req, res, next) => {
+    server.put('/users/:id', (req, res, next) => {
         if(!req.is('application/json')){
             return next(new errors.InvalidContentError("Expects 'application/json'"));
         }
         try{
-            const user = await User.findOneAndUpdate({ _id : req.params.id }, req.body);
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(req.body.password, salt, async (err, hash) => {
+                  req.body.password = hash;
+                  const user = await User.findOneAndUpdate({ _id : req.params.id }, req.body);
             res.send(200);
             next();
+            });
+        });
         }catch(err){
             return next(new errors.ResourceNotFoundError(`There is no user with the id of ${req.params.id}`));
         }
@@ -90,6 +95,7 @@ module.exports = server => {
     //Auth user
     server.post('/auth', async (req, res, next) => {
         const { email, password } = req.body;
+        console.log(req.body);
         try{
             // Authenticate User
             const user = await auth.authenticate(email, password);
