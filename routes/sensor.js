@@ -86,6 +86,17 @@ module.exports = server => {
         }
     });
 
+       //Get Sensor By Active
+       server.get('/sensor/find/active', async (req, res, next) => {
+        try {
+            const sensor = await Sensor.find({ isActive : 0});
+            res.send(sensor);
+            next();
+        }catch(err){
+            return next(new errors.InvalidContentError(err));
+        }
+    });
+
     //Check if sensor exists
     server.post("/sensorCheck", async (req, res, next) => {
         try{
