@@ -95,7 +95,6 @@ module.exports = server => {
     //Auth user
     server.post('/auth', async (req, res, next) => {
         const { email, password } = req.body;
-        console.log(req.body);
         try{
             // Authenticate User
             const user = await auth.authenticate(email, password);
