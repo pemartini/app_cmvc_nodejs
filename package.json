@@ -11,8 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "cron": "^1.8.2",
+    "http": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.6",
@@ -21,6 +24,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "read-excel-file": "^4.0.6",
+    "request": "^2.88.2",
     "restify": "^8.5.1",
     "restify-errors": "^8.0.2",
     "restify-jwt-community": "^1.1.2"
