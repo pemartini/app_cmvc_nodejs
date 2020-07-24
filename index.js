@@ -12,6 +12,7 @@ const server = restify.createServer();
 server.listen(config.PORT, () => {
     mongoose.set('useFindAndModify', false);
     mongoose.set('useUnifiedTopology', true);
+    mongoose.set('useCreateIndex', true);
     mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true});
 });
 
