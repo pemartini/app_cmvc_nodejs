@@ -30,7 +30,7 @@
     "restify": "^8.5.1",
     "restify-errors": "^8.0.2",
     "restify-jwt-community": "^1.1.2",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
